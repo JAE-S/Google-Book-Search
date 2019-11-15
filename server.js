@@ -1,24 +1,52 @@
-const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3000;
-const app = express();
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+  // ========================================================== //
+ //                       S E R V E R                          //
+// ========================================================== //
 
-// Define API routes here
+// Dependencies
+// =========================================================
+    const express = require("express");
+    const mongoose = require("mongoose"); 
+    const routes = require("./App/routes"); 
 
-// Send every other request to the React app
-// Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// PORT
+// =========================================================
+    const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+// Sets up the Express App
+// =========================================================
+    const app = express();
+
+// Sets up for Mongoose + Heroku
+// =========================================================
+    var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/google-it";
+        mongoose.connect(MONGODB_URI,  { useNewUrlParser: true })
+        // Connect to mongoose database 
+        mongoose.connect(MONGODB_URI, err => {
+            if (err){
+                console.log("An error has occured: " + err);
+            } else {
+                console.log("Connection to Mongoose was successful");
+            }
+    });
+
+// Configure middleware
+// =========================================================
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
+    // Serve up static assets (usually on heroku)
+    if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+    }
+
+// Route
+// =========================================================
+    app.use(routes);
+
+// Starts the server
+// ========================================================
+    app.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
+    });
+
+ module.exports = app;

@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Import React 
+// =========================================================
+  import React from 'react';
+  import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Google book search 
-        </a>
-      </header>
-    </div>
-  );
-}
+// Import Components 
+// =========================================================
+  import Nav from "./components/Nav"
+  // + Wrapper  
+  // + Footer 
+  
+// Import Pages
+// =========================================================
+  import SearchBooks from "./pages/SearchBooks"
+// import SavedBooks from "./pages/SavedBooks"
 
-export default App;
+// Import Css 
+// =========================================================
+  import './App.css';
+
+ // App 
+// =========================================================
+  function App() {
+    return (
+      <Router>
+        <div className="App">
+          <Nav /> 
+          {/* <Wrapper>  */}
+            <Switch>
+              <Route exact path="/" component={SearchBooks} />
+            </Switch> 
+          {/* </Wrapper> */}
+          {/* <Footer /> */}
+        </div>
+      </Router>
+    );
+  }
+
+  export default App;
