@@ -9,7 +9,7 @@
   * [Technologies](#technologies)
   * [Features And Functionality](#features-and-functionality)
   * [File Architecture](#file-architecture)
-  * [Click here to visit the site!]()
+  * [Click here to visit the site!](https://google-it.herokuapp.com/)
 ---
 
 ## Design Process
