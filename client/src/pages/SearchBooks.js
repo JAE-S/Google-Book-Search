@@ -10,31 +10,60 @@
 // =========================================================
 import {Container} from '@material-ui/core';
 import SearchBar from "../components/SearchBar";
+import SearchResults from "../components/SearchResults";
 
 class SearchBooks extends Component {
 
-    state = {
-        search: "",
-        books: [],
-        results: [],
-        error: ""
-    }; 
+    constructor(props) {
+        super(props);
+        this.state = {
+          books: [],
+          search: "",
+        };
+     }; 
+
+    searchGoogle = query => {
+        API.googleSearch(query)
+        .then((res) => {
+            let results = res.data.items
+            const booksArray = results.map((obj) => {
+                const { title, 
+                        authors, 
+                        description, 
+                        previewLink, 
+                        imageLinks } = obj.volumeInfo;
+                const thumbnail = imageLinks ? imageLinks.thumbnail : 'unavailable';
+                return { 
+                    image: thumbnail,
+                    title,
+                    authors,
+                    description,
+                    link: previewLink, 
+                };
+            })
+            this.setState({
+                books: booksArray
+            })
+            console.log(this.state.books)
+            console.log(this.state.books.length)
+
+    })
+}
 
     handleInputChange = event => {
-        let value = event.target.value
-        this.setState({ search: [ value, value+value, value+value+value]})
+        event.preventDefault(); 
+        const value = event.target.value
+        this.setState({ search: value})
+        // this.setState({ search: [ value, value+value, value+value+value]})z
+        // console.log(this.state.search);
+        // this.searchGoogle(this.state.search); 
     }
+
 
     handleFormSubmit = event => {
         event.preventDefault(); 
-        API.googleSearch(this.state.search)
-            .then(res => {
-                if (res.data.status === "error") {
-                    throw new Error(res.data.message);
-                }
-                this.setState({ results: res.data.message, error: "" });
-            })
-            .catch(err => this.setState({ error: err.message})); 
+       this.searchGoogle(this.state.search); 
+    //    console.log(this.state.books)
     }
 
     render(){
@@ -45,9 +74,20 @@ class SearchBooks extends Component {
                     <SearchBar
                         handleFormSubmit={this.handleFormSubmit}
                         handleInputChange={this.handleInputChange}
-                        books={this.state.books}
+                        search={this.state.search}
                     />
-                   
+                  
+              {/* <SearchResults>
+                {this.state.books.map((book, i) => (
+                    <SearchResults 
+                         key={i}
+                         id={book.id}
+                         title={book.title}
+                    />
+                ))}
+            </SearchResults> */}
+                    <SearchResults books={this.state.books} />
+
                 </Container>
                 
 

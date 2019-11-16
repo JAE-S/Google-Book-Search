@@ -18,11 +18,6 @@ function SearchBar(props) {
                     marginTop: 200  
                 }}
             />
-            <datalist id="books"> 
-                {props.books.map(book => (
-                    <option value={book} key={book} />
-                ))}
-            </datalist>
             <Button 
                 type="submit" 
                 onClick={props.handleFormSubmit} 
