@@ -8,7 +8,7 @@
 
 // Import Components
 // =========================================================
-import {Container} from '@material-ui/core';
+import {Container, Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core';
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 
@@ -19,6 +19,7 @@ class SearchBooks extends Component {
         this.state = {
           books: [],
           search: "",
+          message: "The book collection is empty. Please search for a book to begin! "
         };
      }; 
 
@@ -38,15 +39,14 @@ class SearchBooks extends Component {
                     title,
                     authors,
                     description,
-                    link: previewLink, 
+                    link: previewLink,
                 };
             })
             this.setState({
                 books: booksArray
             })
-            console.log(this.state.books)
-            console.log(this.state.books.length)
-
+            // console.log(this.state.books)
+            // console.log(this.state.books.length)
     })
 }
 
@@ -62,36 +62,40 @@ class SearchBooks extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault(); 
-       this.searchGoogle(this.state.search); 
+        this.setState({ message: ""})
+        this.searchGoogle(this.state.search); 
     //    console.log(this.state.books)
     }
 
     render(){
         return (
-            <Container> 
-                <Container>
-         
-                    <SearchBar
-                        handleFormSubmit={this.handleFormSubmit}
-                        handleInputChange={this.handleInputChange}
-                        search={this.state.search}
-                    />
-                  
-              {/* <SearchResults>
-                {this.state.books.map((book, i) => (
-                    <SearchResults 
-                         key={i}
-                         id={book.id}
-                         title={book.title}
-                    />
-                ))}
-            </SearchResults> */}
-                    <SearchResults books={this.state.books} />
+            <>
+            <Container style={{ marginTop: 250}}>
 
-                </Container>
-                
-
+                <SearchBar
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleInputChange={this.handleInputChange}
+                    search={this.state.search}
+                />
             </Container>
+            <Container style={{marginTop: 270}}>
+            
+                <Table> 
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center" style={{borderBottom: "none"}}>
+                            {this.state.message}
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <SearchResults 
+                            books={this.state.books} 
+                        />
+                    </TableBody>
+               </Table>
+            </Container>
+           </>
         )
     }
 

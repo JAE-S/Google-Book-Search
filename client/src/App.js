@@ -6,8 +6,8 @@
 // Import Components 
 // =========================================================
   import Nav from "./components/Nav"
-  // + Wrapper  
-  // + Footer 
+  import Footer from "./components/Footer"
+  import Wrapper from "./components/Wrapper"
   
 // Import Pages
 // =========================================================
@@ -25,12 +25,12 @@
       <Router>
         <div className="App">
           <Nav /> 
-          {/* <Wrapper>  */}
+          <Wrapper> 
             <Switch>
               <Route exact path="/" component={SearchBooks} />
             </Switch> 
-          {/* </Wrapper> */}
-          {/* <Footer /> */}
+          </Wrapper>
+          <Footer/>
         </div>
       </Router>
     );

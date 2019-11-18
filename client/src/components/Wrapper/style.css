@@ -1,0 +1,10 @@
+.wrapper {
+    max-width: 1200px; 
+    min-height: 94vmin;
+    flex-grow: 1;
+    width: 100%; 
+    position: relative; 
+    z-index: 1;
+    margin: 0 auto;
+   }
+   
