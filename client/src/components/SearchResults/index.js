@@ -1,32 +1,35 @@
 import React from "react"; 
-import SaveFavorites from "../SaveFavorites"
-import { TableRow, TableCell, } from '@material-ui/core';
+import { TableCell, Button } from '@material-ui/core';
 
-
-
-function SearchResults(props) {
-
-    return ( 
-        
-        props.books.map((book, i)=> {
-            
-           return <TableRow key={i}> 
-            
-            <TableCell>{book.id}</TableCell> 
-            <TableCell><img alt={book.title} src={book.image} /></TableCell>
-            <TableCell>
-               <h3>{book.title}</h3> 
-               <p> {book.description}</p>
-               <a href={book.link}>Click to view book</a>
-            </TableCell> 
-            <TableCell>
-                
-                <SaveFavorites/>
-            </TableCell>
-            </TableRow>
-        })
-
+export function Image(props) {
+    return (
+        <TableCell>
+            <img
+                alt={props.title}
+                src={props.image}
+            />
+        </TableCell>
     )
-} 
+}
 
-export default SearchResults; 
+export function BookDetails(props){
+    return (
+        <TableCell>
+            <h3>{props.title}</h3> 
+            <p> {props.description}</p>
+            <a href={props.link}>Click to view book</a>
+        </TableCell>
+    )
+}
+
+export function SaveFavorites(props){
+    return (
+        <TableCell>
+            <Button
+                onClick={props.handleSaveBtn}
+            >
+                Add to Favorites
+            </Button> 
+        </TableCell>
+    )
+}
