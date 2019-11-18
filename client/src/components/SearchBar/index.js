@@ -8,7 +8,7 @@ function SearchBar(props) {
         <AppBar style={{marginTop: 200, padding: 20, backgroundColor: "rgb(232, 240, 254)"}}>
      
             <form>
-                <label style={{ color: "black" }} htmlFor="book"><b>Enter a book title to begin!</b>   </label>
+                <label style={{ color: "black" }} htmlFor="book"><b>Enter a book title:  </b>   </label>
                 <Input
                     value={props.search}
                     onChange={props.handleInputChange}
