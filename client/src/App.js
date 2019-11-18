@@ -7,12 +7,12 @@
 // =========================================================
   import Nav from "./components/Nav"
   import Footer from "./components/Footer"
-  import Wrapper from "./components/Wrapper"
+  // import Wrapper from "./components/Wrapper"
   
 // Import Pages
 // =========================================================
   import SearchBooks from "./pages/SearchBooks"
-// import SavedBooks from "./pages/SavedBooks"
+  import SavedBooks from "./pages/SavedBooks"
 
 // Import Css 
 // =========================================================
@@ -25,11 +25,12 @@
       <Router>
         <div className="App">
           <Nav /> 
-          <Wrapper> 
+          {/* <Wrapper>  */}
             <Switch>
-              <Route exact path="/" component={SearchBooks} />
-            </Switch> 
-          </Wrapper>
+              <Route exact path="/" component={SearchBooks}/>
+              <Route exact path="/favorites" component={SavedBooks}/>
+            </Switch>
+          {/* </Wrapper> */}
           <Footer/>
         </div>
       </Router>

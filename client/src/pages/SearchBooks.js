@@ -11,7 +11,8 @@
     import {Container, Table, TableBody, TableHead, TableRow, TableCell} from '@material-ui/core';
     import SearchBar from "../components/SearchBar";
     import { Image, BookDetails, SaveFavorites } from "../components/SearchResults";
-
+    import Wrapper from "../components/Wrapper"
+    
 class SearchBooks extends Component {
 
     constructor(props) {
@@ -74,14 +75,15 @@ class SearchBooks extends Component {
     render(){
         return (
             <>
-            <Container style={{ marginTop: 250}}>
+            <Container >
                 <SearchBar
                     handleFormSubmit={this.handleFormSubmit}
                     handleInputChange={this.handleInputChange}
                     search={this.state.search}
                 />
             </Container>
-            <Container style={{marginTop: 270}}>
+            <Wrapper>
+            <Container style={{marginTop: 290}}>
             
                 <Table> 
                     <TableHead>
@@ -109,6 +111,7 @@ class SearchBooks extends Component {
                     </TableBody>
                </Table>
             </Container>
+            </Wrapper>
            </>
         )
     }

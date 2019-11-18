@@ -5,7 +5,7 @@ function SearchBar(props) {
 
     return (
         <>
-        <AppBar style={{marginTop: 200, padding: 20, backgroundColor: "rgb(232, 240, 254)"}}>
+        <AppBar style={{marginTop: 222, padding: 20, backgroundColor: "rgb(232, 240, 254)"}}>
      
             <form>
                 <label style={{ color: "black" }} htmlFor="book"><b>Enter a book title:  </b>   </label>

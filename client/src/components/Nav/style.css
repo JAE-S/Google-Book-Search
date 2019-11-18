@@ -1,0 +1,22 @@
+ /* .nav {
+    padding: 10;
+    height: 240;
+    width: "100%";
+    background-color: "black";
+} */
+
+.MuiTab-wrapper {
+/* color: white;  */
+/* text-decoration: none;
+padding-bottom: 16px; 
+border-bottom: 2px solid;  */
+
+}
+
+.MuiTab-textColorPrimary {
+    color: #f7f7f7!important;
+}
+
+.MuiTab-textColorPrimary.Mui-selected {
+    color: #4285F4!important;
+}
