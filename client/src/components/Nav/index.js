@@ -23,15 +23,10 @@ const nav = {
 
 class NavTabs extends React.Component {
 
-    
     state = { 
         value: "/",
     }
  
-    // handleChange = (event, value) => {
-    // this.setState({ value });
-    // };
-
   componentDidMount() {
     window.onpopstate = ()=> {
       this.setState({

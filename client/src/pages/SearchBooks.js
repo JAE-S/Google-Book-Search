@@ -66,10 +66,24 @@ class SearchBooks extends Component {
     }
 
     handleSaveBtn = event => { 
+       const image =  this.state.books[0].image;
+       const title = this.state.books[0].title;
+       const authors = this.state.books[0].authors;
+       const link = this.state.books[0].link;
         event.preventDefault(); 
-        if (this.state.books){
-            console.log("This button was clicked")
-        }  
+        if (this.state.books) {
+            API.saveBook({
+                image: image,
+                title: title, 
+                authors: authors,
+                link: link
+            })
+              .then(res => this.searchGoogle())
+              .catch(err => console.log(err));
+            // console.log(this.state.books[0].title)
+          }
+           
+        
     }
 
     render(){

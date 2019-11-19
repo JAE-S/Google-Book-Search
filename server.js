@@ -7,11 +7,11 @@
 // =========================================================
     const express = require("express");
     const mongoose = require("mongoose"); 
-    const routes = require("./App/routes"); 
+    const routes = require("./routes");
 
 // PORT
 // =========================================================
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 3002;
 
 // Sets up the Express App
 // =========================================================
