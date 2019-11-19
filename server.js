@@ -11,16 +11,30 @@
 
 // PORT
 // =========================================================
-    const PORT = process.env.PORT || 3002;
+    const PORT = process.env.PORT || 3001;
 
 // Sets up the Express App
 // =========================================================
     const app = express();
 
+// Configure middleware
+// =========================================================
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+app.use(express.static("client/build"));
+}
+
+// Route
+// =========================================================
+app.use(routes);
+
 // Sets up for Mongoose + Heroku
 // =========================================================
     var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/google-it";
-        mongoose.connect(MONGODB_URI,  { useNewUrlParser: true })
+        // mongoose.connect(MONGODB_URI,  { useCreateIndex: true, useNewUrlParser: true })
         // Connect to mongoose database 
         mongoose.connect(MONGODB_URI, err => {
             if (err){
@@ -29,19 +43,6 @@
                 console.log("Connection to Mongoose was successful");
             }
     });
-
-// Configure middleware
-// =========================================================
-    app.use(express.urlencoded({ extended: true }));
-    app.use(express.json());
-    // Serve up static assets (usually on heroku)
-    if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-    }
-
-// Route
-// =========================================================
-    app.use(routes);
 
 // Starts the server
 // ========================================================

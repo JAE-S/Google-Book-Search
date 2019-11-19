@@ -7,7 +7,7 @@
 
 // API routes
 // =========================================================
-    router.use(apiRoutes); 
+    router.use("/api", apiRoutes); 
 
 // If no API routes are hit, send the react app to the index 
 // router.get("*", (req, res) => {

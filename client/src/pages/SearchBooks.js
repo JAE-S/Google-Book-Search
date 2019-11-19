@@ -24,6 +24,16 @@ class SearchBooks extends Component {
         };
      }; 
 
+    componentDidMount() {
+    this.loadBooks();
+    }
+    
+    loadBooks = () => {
+    API.getBooks()
+        .then(res => this.setState({ books: res.data }))
+        .catch(err => console.log(err));
+    };
+
     handleInputChange = event => {
         event.preventDefault(); 
         const value = event.target.value
@@ -66,24 +76,24 @@ class SearchBooks extends Component {
     }
 
     handleSaveBtn = event => { 
+        event.preventDefault(); 
        const image =  this.state.books[0].image;
        const title = this.state.books[0].title;
        const authors = this.state.books[0].authors;
        const link = this.state.books[0].link;
-        event.preventDefault(); 
+      
         if (this.state.books) {
             API.saveBook({
                 image: image,
                 title: title, 
-                authors: authors,
+                authors: authors[0],
                 link: link
             })
-              .then(res => this.searchGoogle())
+              .then(res => this.loadBooks())
               .catch(err => console.log(err));
             // console.log(this.state.books[0].title)
           }
-           
-        
+          
     }
 
     render(){
@@ -93,7 +103,7 @@ class SearchBooks extends Component {
                 <SearchBar
                     handleFormSubmit={this.handleFormSubmit}
                     handleInputChange={this.handleInputChange}
-                    search={this.state.search}
+                    search={this.state.search} 
                 />
             </Container>
             <Wrapper>
