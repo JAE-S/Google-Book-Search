@@ -24,15 +24,15 @@ class SearchBooks extends Component {
         };
      }; 
 
-    componentDidMount() {
-    this.loadBooks();
-    }
+    // componentDidMount() {
+    // this.loadBooks();
+    // }
     
-    loadBooks = () => {
-    API.getBooks()
-        .then(res => this.setState({ books: res.data }))
-        .catch(err => console.log(err));
-    };
+    // loadBooks = () => {
+    // API.getBooks()
+    //     .then(res => this.setState({ books: res.data }))
+    //     .catch(err => console.log(err));
+    // };
 
     handleInputChange = event => {
         event.preventDefault(); 
@@ -89,7 +89,7 @@ class SearchBooks extends Component {
                 authors: authors[0],
                 link: link
             })
-              .then(res => this.loadBooks())
+              .then(res => console.log(res.title + " was added to your favorites"))
               .catch(err => console.log(err));
             // console.log(this.state.books[0].title)
           }
